@@ -200,7 +200,7 @@ lombok {
 
 dependencies {
     // would ideally use API for this, but that does not work well with fg.deobf in my understanding
-    implementation files("../Mantle/build/libs/Mantle-${minecraft_version}-${mantle_version}-patched.jar")
+    implementation files("../Mantle/build/libs/ContinuumCore-${minecraft_version}-${mantle_version}.jar")
 
     
 

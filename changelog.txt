@@ -1,6 +1,7 @@
-Continuum Construct 26.1.2-3.11.7
+Continuum Construct 26.1.2-3.11.8
 
 Fixes
+- Updated the required library dependency to Continuum Core 1.11.4 after the Mantle fork rename.
 - Fixed Luck displaying the wrong vanilla enchantment tooltip on weapons. Swords and launchers now show Looting, fishing rods show Luck of the Sea, and harvest tools show Fortune.
 - Fixed Tinker Station and Tinkers' Anvil tool assembly being too strict about internal input slot order.
 - Tools can now be assembled as long as the required parts are present in the station inputs, matching the selected tool layout more reliably.
@@ -9,7 +10,7 @@ Fixes
 - Part Builder, casting, melting, modifier, and tool-building recipes now use the recipe map received from the server when JEI builds its displays.
 - Fixed a JEI registration crash caused by sorting an immutable synced fuel recipe list.
 - Fixed material and tool casting recipes failing on dedicated servers after recipe reload by rebuilding Continuum Construct recipe lookups from the loaded server recipe map.
-- Updated the required Continuum Mantle version to 1.11.3 for the latest recipe decode and sync fixes.
+- Updated the required Continuum Core version to 1.11.4 for the latest recipe decode and sync fixes.
 
 Tested
 - compileJava and assemble passed.
