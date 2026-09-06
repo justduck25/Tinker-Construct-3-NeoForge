@@ -1,6 +1,6 @@
 # EnderIO Compat Tasks
 
-Scope: Tinker's Continuum / TConstruct 26.1.2 compat with EnderIO 9.0.5 alpha.
+Scope: Continuum Construct / TConstruct 26.1.2 compat with EnderIO 9.0.5 alpha.
 
 Keep compat data gated behind filled common tags or `neoforge:mod_loaded` for `enderio` where possible. Prefer data JSON/datagen first; only add Java hooks if a feature cannot be expressed cleanly in data.
 

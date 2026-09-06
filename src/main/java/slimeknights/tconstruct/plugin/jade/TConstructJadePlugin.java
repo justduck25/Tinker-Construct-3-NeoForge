@@ -21,7 +21,7 @@ import snownee.jade.api.IWailaPlugin;
 import snownee.jade.api.WailaPlugin;
 import snownee.jade.api.config.IPluginConfig;
 
-/** Jade plugin for Tinkers' Construct block tooltips. */
+/** Jade plugin for Continuum Construct block tooltips. */
 @WailaPlugin
 public class TConstructJadePlugin implements IWailaPlugin {
   private static final TankProvider TANK_PROVIDER = new TankProvider();

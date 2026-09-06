@@ -20,7 +20,7 @@ import slimeknights.tconstruct.library.recipe.tinkerstation.ITinkerStationRecipe
 import slimeknights.tconstruct.library.recipe.worktable.IModifierWorktableRecipe;
 
 /**
- * Class containing all of Tinkers Construct recipe types
+ * Class containing all of Continuum Construct recipe types
  */
 public class TinkerRecipeTypes {
   /** Deferred instance */

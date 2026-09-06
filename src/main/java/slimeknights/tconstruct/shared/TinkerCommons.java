@@ -168,6 +168,7 @@ public final class TinkerCommons extends TinkerModule {
   public TinkerCommons() {
     TConstructCommand.init();
     NeoForge.EVENT_BUS.addListener(RecipeCacheInvalidator::onReloadListenerReload);
+    NeoForge.EVENT_BUS.addListener(RecipeCacheInvalidator::onServerStarted);
   }
 
   @SubscribeEvent

@@ -5,6 +5,12 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "conditions": [
+            {
+              "chance": 0.12,
+              "condition": "minecraft:random_chance"
+            }
+          ],
           "functions": [
             {
               "function": "tconstruct:add_tool_data",

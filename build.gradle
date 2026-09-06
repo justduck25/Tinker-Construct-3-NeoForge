@@ -1,5 +1,5 @@
 /*
- * Tinkers Construct
+ * Continuum Construct
  * Master build file
  * 
  * Authors: boni, Sunstrike, ProgWML6
@@ -57,8 +57,8 @@ repositories {
 
 group = 'slimeknights.tconstruct'
 base {
-    archivesName = 'TinkersConstruct'
-}                                                          
+    archivesName = 'ContinuumConstruct'
+}
 java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
 // sets version to the slimeKnights version format
@@ -200,7 +200,7 @@ lombok {
 
 dependencies {
     // would ideally use API for this, but that does not work well with fg.deobf in my understanding
-    implementation files("../Mantle/build/libs/Mantle-${minecraft_version}-${mantle_version}-patched.jar")
+    implementation files("../Mantle/build/libs/ContinuumCore-${minecraft_version}-${mantle_version}.jar")
 
     
 
@@ -266,7 +266,7 @@ tasks.named('processResources', ProcessResources).configure {
 tasks.named('jar', Jar).configure {
     manifest {
         attributes([
-                "Specification-Title"     : "Tinkers Construct",
+                "Specification-Title"     : "Continuum Construct",
                 "Specification-Vendor"    : "Slime Knights",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,

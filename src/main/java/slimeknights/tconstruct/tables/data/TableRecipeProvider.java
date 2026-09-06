@@ -56,7 +56,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
 
   @Override
   public String getName() {
-    return "Tinkers' Construct Table Recipes";
+    return "Continuum Construct Table Recipes";
   }
 
   @Override
@@ -468,7 +468,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
 
     @Override
     public String getName() {
-      return "Tinkers' Construct Table Recipes";
+      return "Continuum Construct Table Recipes";
     }
   }
 }

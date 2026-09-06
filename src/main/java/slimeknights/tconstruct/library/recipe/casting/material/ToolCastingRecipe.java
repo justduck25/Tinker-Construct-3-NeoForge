@@ -70,6 +70,11 @@ public class ToolCastingRecipe extends PartSwapCastingRecipe implements IMultiRe
     }
   }
 
+  /** Rebuilds side caches after client recipe sync clears them. */
+  public void rebuildLookup() {
+    CastingRecipeLookup.registerCastable(result);
+  }
+
   /** @deprecated use {@link #ToolCastingRecipe(TypeAwareRecipeSerializer, Identifier, String, Ingredient, int, CastPurpose, IModifiable, IJsonPredicate, List)} */
   @Deprecated(forRemoval = true)
   public ToolCastingRecipe(TypeAwareRecipeSerializer<?> serializer, Identifier id, String group, Ingredient cast, int itemCost, IModifiable result) {

@@ -12,7 +12,6 @@ import net.minecraft.world.level.storage.loot.functions.LootItemConditionalFunct
 import net.minecraft.world.level.storage.loot.functions.LootItemFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import slimeknights.mantle.data.loadable.LoadableCodec;
-import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.materials.RandomMaterial;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
 import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
@@ -21,6 +20,7 @@ import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.tools.SlotType;
 import slimeknights.tconstruct.library.tools.definition.ToolDefinition;
 import slimeknights.tconstruct.library.tools.definition.module.material.ToolMaterialHook;
+import slimeknights.tconstruct.library.tools.item.IModifiable;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.library.tools.stat.ToolStats;
 import slimeknights.tconstruct.tools.TinkerTools;
@@ -86,7 +86,7 @@ public class AddToolDataFunction extends LootItemConditionalFunction {
 
   @Override
   protected ItemStack run(ItemStack stack, LootContext context) {
-    if (stack.is(TinkerTags.Items.MODIFIABLE)) {
+    if (stack.getItem() instanceof IModifiable) {
       ToolStack tool = ToolStack.from(stack);
       ToolDefinition definition = tool.getDefinition();
       if (definition.hasMaterials() && !materials.isEmpty()) {
@@ -115,6 +115,7 @@ public class AddToolDataFunction extends LootItemConditionalFunction {
       if (needsRebuild) {
         tool.rebuildStats();
       }
+      tool.ensureHasData();
       // set damage last to a percentage of max damage if requested
       if (damage > 0) {
         tool.setDamage((int)(tool.getStats().get(ToolStats.DURABILITY) * damage));

@@ -1632,7 +1632,7 @@
 
   "_comment": "Modifiers",
 
-  "key.categories.tconstruct": "Tinkers' Construct",
+  "key.categories.tconstruct": "Continuum Construct",
   "key.tconstruct.helmet_interact": "Узаємодія з шоломом",
   "key.tconstruct.leggings_interact": "Узаємодія з наголінниками",
 
@@ -2619,7 +2619,7 @@
 
   "_comment": "Tool Advancements",
   "advancements.tconstruct.tools.materials_and_you.title": "Інженер у навчанні",
-  "advancements.tconstruct.tools.materials_and_you.description": "Створіть «Матеріали і ви», вступну книга для Tinkers' Construct",
+  "advancements.tconstruct.tools.materials_and_you.description": "Створіть «Матеріали і ви», вступну книга для Continuum Construct",
   "advancements.tconstruct.tools.part_builder.title": "Збирач деталей",
   "advancements.tconstruct.tools.part_builder.description": "Створіть збирач деталей, ваш перший крок до створення інструментів",
   "advancements.tconstruct.tools.make_part.title": "Деталі",

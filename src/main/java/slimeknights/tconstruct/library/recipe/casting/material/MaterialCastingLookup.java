@@ -109,6 +109,20 @@ public class MaterialCastingLookup {
     MaterialRecipeCache.addKnownVariant(recipe.getOutput().getVariant());
   }
 
+  /** Rebuilds the material casting lookup from already-loaded recipes, used after client recipe sync. */
+  public static void rebuildRecipes(Collection<MaterialFluidRecipe> fluids, Collection<MaterialCastingRecipe> castingRecipes, Collection<ToolCastingRecipe> toolCastingRecipes) {
+    LISTENER.clearCache();
+    for (MaterialFluidRecipe recipe : fluids) {
+      registerFluid(recipe);
+    }
+    for (MaterialCastingRecipe recipe : castingRecipes) {
+      recipe.rebuildLookup();
+    }
+    for (ToolCastingRecipe recipe : toolCastingRecipes) {
+      recipe.rebuildLookup();
+    }
+  }
+
   /**
    * Gets the cost for the given material item in a table
    * @param item  Item

@@ -1694,7 +1694,7 @@
 
   "_comment": "Modifiers",
 
-  "key.categories.tconstruct": "Tinkers' Construct",
+  "key.categories.tconstruct": "Continuum Construct",
   "key.tconstruct.helmet_interact": "Interaction du casque",
   "key.tconstruct.leggings_interact": "Interaction des jambières",
   "modifier.tconstruct.empty": "Modificateur invalide",
@@ -2996,7 +2996,7 @@
   "_comment": "Tool Advancements",
 
   "advancements.tconstruct.tools.materials_and_you.title": "Apprenti Tinker",
-  "advancements.tconstruct.tools.materials_and_you.description": "Fabriquez le livre 'Matériaux et Vous', introduction à Tinkers' Construct",
+  "advancements.tconstruct.tools.materials_and_you.description": "Fabriquez le livre 'Matériaux et Vous', introduction à Continuum Construct",
   "advancements.tconstruct.tools.part_builder.title": "Constructeur de Pièces",
   "advancements.tconstruct.tools.part_builder.description": "Créez un constructeur de pièces, première étape pour fabriquer des outils",
   "advancements.tconstruct.tools.make_part.title": "Pièces d'Outil",

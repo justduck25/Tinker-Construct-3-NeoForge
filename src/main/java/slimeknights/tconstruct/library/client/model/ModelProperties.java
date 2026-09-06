@@ -5,7 +5,7 @@ import net.neoforged.neoforge.model.data.ModelProperty;
 import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
 import slimeknights.tconstruct.library.tools.nbt.MaterialIdNBT;
 
-/** Model data properties used in Tinker's Construct. */
+/** Model data properties used in Continuum Construct. */
 public class ModelProperties {
   /** Property for fluid stack in a fluid model. */
   public static final ModelProperty<FluidStack> FLUID_STACK = new ModelProperty<>();

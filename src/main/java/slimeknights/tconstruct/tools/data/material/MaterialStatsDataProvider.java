@@ -27,7 +27,7 @@ public class MaterialStatsDataProvider extends AbstractMaterialStatsDataProvider
 
   @Override
   public String getName() {
-    return "Tinker's Construct Material Stats";
+    return "Continuum Construct Material Stats";
   }
 
   @Override

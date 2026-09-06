@@ -101,6 +101,7 @@ public record MobEquipment(EquipmentSlot slot, IJsonPredicate<Item> match, ItemO
         } else {
           tool.rebuildStats();
         }
+        tool.ensureHasData();
         // if requested, fill with fluid
         if (fluid != null) {
           // fill with between 0mb and the max amount
@@ -115,6 +116,7 @@ public record MobEquipment(EquipmentSlot slot, IJsonPredicate<Item> match, ItemO
             }
           }
         }
+        tool.updateStack(replacement, false);
       }
       mob.setItemSlot(slot, replacement);
     }

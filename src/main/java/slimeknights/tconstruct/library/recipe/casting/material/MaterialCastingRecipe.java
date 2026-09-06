@@ -49,6 +49,12 @@ public class MaterialCastingRecipe extends AbstractMaterialCastingRecipe impleme
     MaterialCastingLookup.registerItemCost(result, itemCost);
   }
 
+  /** Rebuilds side caches after client recipe sync clears them. */
+  public void rebuildLookup() {
+    CastingRecipeLookup.registerCastable(result);
+    MaterialCastingLookup.registerItemCost(result, itemCost);
+  }
+
   /** @deprecated use {@link #MaterialCastingRecipe(TypeAwareRecipeSerializer, Identifier, String, Ingredient, int, IMaterialItem, IJsonPredicate, boolean, boolean)} */
   @Deprecated(forRemoval = true)
   public MaterialCastingRecipe(TypeAwareRecipeSerializer<?> serializer, Identifier id, String group, Ingredient cast, int itemCost, IMaterialItem result, boolean consumed, boolean switchSlots) {

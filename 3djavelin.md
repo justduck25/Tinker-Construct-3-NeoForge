@@ -2,7 +2,7 @@
 
 ## 1. Mục tiêu
 
-Tạo projectile Javelin là **một model 3D duy nhất**, có độ dày thật, nhìn rõ từ mọi góc, giữ đúng material tint của Tinkers Construct và không thay đổi physics hoặc behavior gốc.
+Tạo projectile Javelin là **một model 3D duy nhất**, có độ dày thật, nhìn rõ từ mọi góc, giữ đúng material tint của Continuum Construct và không thay đổi physics hoặc behavior gốc.
 
 Model mới không dùng hai mặt phẳng chồng nhau. Cách cross-plane đã gây ra hình chữ X và không được sử dụng lại.
 
@@ -69,7 +69,7 @@ Thử phương án ưu tiên trước:
 
 1. Tạo model projectile riêng.
 2. Dùng loader `tconstruct:tool` nếu loader hỗ trợ các part 3D cần thiết.
-3. Dùng texture/material dynamic hiện tại của Tinkers Construct.
+3. Dùng texture/material dynamic hiện tại của Continuum Construct.
 4. Nối model riêng vào `ThrownToolRenderer` bằng đúng display context projectile.
 
 Nếu `tconstruct:tool` chỉ sinh quad phẳng và không thể tạo geometry cần thiết, dùng phương án dự phòng:

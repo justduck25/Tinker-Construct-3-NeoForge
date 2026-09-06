@@ -1,8 +1,8 @@
-# Tinker's Continuum
+# Continuum Construct
 
-> A community NeoForge 26.1 port of Tinkers' Construct.
+> A community NeoForge 26.1 port of a classic modular tool and smeltery experience.
 
-**Tinker's Continuum** is the working name for this community-maintained port of **Tinkers' Construct 4** to **Minecraft 26.1 / NeoForge 26.1**.
+**Continuum Construct** is the working name for this community-maintained port to **Minecraft 26.1 / NeoForge 26.1**.
 
 This is not an official SlimeKnights release. The original mod, source code, assets, design, and license remain credited to SlimeKnights. This repository exists to keep the mod playable on the NeoForge 26.1 target while the upstream ecosystem catches up.
 
@@ -17,7 +17,7 @@ This is not an official SlimeKnights release. The original mod, source code, ass
 
 ## Current support
 
-This port currently focuses on the core Tinkers' Construct experience:
+This port currently focuses on the core modular tool experience:
 
 - Tools, materials, parts, modifiers, tool stats, and tooltips.
 - Smeltery, foundry, melter, casting, fluids, tanks, and related rendering.
@@ -29,11 +29,11 @@ Optional compatibility currently included:
 | Mod | Status |
 |---|---|
 | JEI | Recipe/category integration for the current port. |
-| JsonThings | Flex item/block integration for TCon content where supported. |
-| Apotheosis / Apothic Enchanting | TCon tool enchant/modifier bridge, loot category mapping, post-cap handling, and related recipe/tooltip cleanup for the supported 26.1 versions. |
-| Jade | Basic block tooltip integration for TCon fluid tanks and related tank blocks. |
+| JsonThings | Flex item/block integration for Continuum Construct content where supported. |
+| Apotheosis / Apothic Enchanting | Tool enchant/modifier bridge, loot category mapping, post-cap handling, and related recipe/tooltip cleanup for the supported 26.1 versions. |
+| Jade | Basic block tooltip integration for fluid tanks and related tank blocks. |
 
-Other historical Tinkers' Construct integrations are not listed as supported here until those mods have usable NeoForge 26.1 builds and the compat has been tested in this port.
+Other historical integrations are not listed as supported here until those mods have usable NeoForge 26.1 builds and the compat has been tested in this port.
 
 ## Building from source
 
@@ -72,17 +72,17 @@ Please include the following information:
 - Relevant screenshots or video.
 - For crashes or runtime errors, attach the relevant `latest.log`, `debug.log`, or crash report.
 
-Please mention whether the issue happens with this NeoForge 26.1 port only, or also happens in an official upstream Tinkers' Construct build.
+Please mention whether the issue happens with this NeoForge 26.1 port only, or also happens in an official upstream build.
 
 ## Documentation
 
-For documentation about writing addons or working with Tinkers' Construct datapacks, see the [SlimeKnights documentation](https://slimeknights.github.io/docs/).
+For documentation about writing addons or working with datapacks for the original project, see the [SlimeKnights documentation](https://slimeknights.github.io/docs/).
 
-For the original project and official releases, see the [Tinkers' Construct project page](https://slimeknights.github.io/projects/#tinkers-construct).
+For the original project and official releases, see the [SlimeKnights project page](https://slimeknights.github.io/projects/#tinkers-construct).
 
 ## Credits and license
 
-Tinkers' Construct is an original project by [SlimeKnights](https://github.com/SlimeKnights).
+This port is based on the original modular tool project by [SlimeKnights](https://github.com/SlimeKnights).
 
 This NeoForge 26.1 community port is maintained by **justduck**.
 

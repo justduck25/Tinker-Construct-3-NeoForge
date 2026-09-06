@@ -8,7 +8,8 @@
   "tools": {
     "neoforge:ingredient_type": "neoforge:compound",
     "children": [
-      "#tconstruct:modifiable/harvest",
+      "#tconstruct:modifiable/harvest/primary",
+      "#tconstruct:modifiable/harvest/stone",
       "#tconstruct:modifiable/fishing_rods"
     ]
   }

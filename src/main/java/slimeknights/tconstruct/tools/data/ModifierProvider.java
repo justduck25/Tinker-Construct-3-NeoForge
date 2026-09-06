@@ -519,7 +519,7 @@ public class ModifierProvider extends AbstractModifierProvider {
     IJsonPredicate<Item> harvest = ItemPredicate.tag(HARVEST);
     IJsonPredicate<Item> armor = ItemPredicate.tag(WORN_ARMOR);
     buildModifier(ModifierIds.silky).levelDisplay(ModifierLevelDisplay.NO_LEVELS)
-      .addModule(EnchantmentModule.builder(enchantment(Enchantments.SILK_TOUCH)).toolItem(harvest).constant())
+      .addModule(EnchantmentModule.builder(enchantment(Enchantments.SILK_TOUCH)).toolItem(harvest).mainHandHarvest(TConstruct.getResource("silky_harvest")))
       .addModule(EnchantmentModule.builder(enchantment(Enchantments.SILK_TOUCH)).toolItem(armor).armorHarvest(ARMOR_SLOTS));
     buildModifier(TinkerModifiers.severing.getId()).addModule(SeveringModule.INSTANCE);
     buildModifier(ModifierIds.experienced)
@@ -1732,7 +1732,7 @@ public class ModifierProvider extends AbstractModifierProvider {
 
   @Override
   public String getName() {
-    return "Tinkers' Construct Modifiers";
+    return "Continuum Construct Modifiers";
   }
 
   /** Requires the Apotheosis marker modifier for levels unlocked past vanilla-style caps. */

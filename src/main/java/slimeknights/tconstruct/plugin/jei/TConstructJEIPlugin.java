@@ -3,7 +3,10 @@ import net.neoforged.neoforge.client.event.RecipesReceivedEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.api.distmarker.Dist;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.item.crafting.RecipeMap;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeType;
 import slimeknights.tconstruct.library.recipe.molding.MoldingRecipe;
 import slimeknights.tconstruct.plugin.jei.MoldingRecipeCategory;
 import slimeknights.tconstruct.library.recipe.entitymelting.EntityMeltingRecipe;
@@ -12,6 +15,7 @@ import slimeknights.tconstruct.plugin.jei.entity.DefaultEntityMeltingRecipe;
 import slimeknights.tconstruct.plugin.jei.entity.EntityMeltingRecipeCategory;
 import slimeknights.tconstruct.plugin.jei.melting.MeltingFuelHandler;
 import java.util.List;
+import java.util.stream.Stream;
 import mezz.jei.api.registration.IModIngredientRegistration;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
@@ -58,6 +62,7 @@ import net.minecraft.world.item.ItemStack;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.mantle.util.RetexturedHelper;
 import slimeknights.tconstruct.common.TinkerTags;
+import slimeknights.tconstruct.common.recipe.TinkerRecipeCacheRebuilder;
 import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.library.recipe.material.ShapedMaterialRecipe;
 import slimeknights.tconstruct.library.recipe.material.MaterialRecipeCache;
@@ -89,7 +94,12 @@ public class TConstructJEIPlugin implements IModPlugin {
 
   @SubscribeEvent
   public static void onRecipesReceived(RecipesReceivedEvent event) {
-    clientRecipeMap = event.getRecipeMap();}
+    clientRecipeMap = event.getRecipeMap();
+    Minecraft minecraft = Minecraft.getInstance();
+    if (minecraft.level != null) {
+      TinkerRecipeCacheRebuilder.rebuild(minecraft.level.registryAccess(), clientRecipeMap);
+    }
+  }
   @Override
   public Identifier getPluginUid() {
     return TConstruct.getResource("jei");
@@ -227,52 +237,57 @@ public class TConstructJEIPlugin implements IModPlugin {
 
   @Override
   public void registerRecipes(IRecipeRegistration registration) {
-    Minecraft minecraft = Minecraft.getInstance();if (minecraft.level == null) {return;
+    Minecraft minecraft = Minecraft.getInstance();
+    if (minecraft.level == null) {
+      TConstruct.LOG.warn("Skipping Continuum Construct JEI recipes because the client level is not available");
+      return;
     }
-    MaterialRecipeCache.setDisplayRegistryAccess(minecraft.level.registryAccess());
-    net.minecraft.world.item.crafting.RecipeManager manager;
+    RegistryAccess registryAccess = minecraft.level.registryAccess();
+    MaterialRecipeCache.setDisplayRegistryAccess(registryAccess);
+    net.minecraft.world.item.crafting.RecipeManager manager = null;
     if (minecraft.level.recipeAccess() instanceof net.minecraft.world.item.crafting.RecipeManager clientManager) {
       manager = clientManager;
     } else if (minecraft.getSingleplayerServer() != null) {
       manager = minecraft.getSingleplayerServer().getRecipeManager();
-    } else {return;
-    }    List<IDisplayPartBuilderRecipe> recipes;
-    if (!clientRecipeMap.byType(TinkerRecipeTypes.PART_BUILDER.get()).isEmpty()) {
-      recipes = RecipeHelper.getJEIRecipes(minecraft.level.registryAccess(),
-        clientRecipeMap.byType(TinkerRecipeTypes.PART_BUILDER.get()).stream(),
-        IDisplayPartBuilderRecipe.class);
-    } else {
-      recipes = RecipeHelper.getJEIRecipes(minecraft.level.registryAccess(), manager,
-        TinkerRecipeTypes.PART_BUILDER.get(), IDisplayPartBuilderRecipe.class);
-    }registration.addRecipes(TConstructJEIConstants.PART_BUILDER, recipes);
+    }
+    RecipeMap activeRecipeMap = clientRecipeMap != RecipeMap.EMPTY ? clientRecipeMap : manager == null ? RecipeMap.EMPTY : manager.recipeMap();
+    if (activeRecipeMap == RecipeMap.EMPTY || activeRecipeMap.values().isEmpty()) {
+      TConstruct.LOG.warn("Skipping Continuum Construct JEI recipes because no client recipe map is available");
+      return;
+    }
+
+    TinkerRecipeCacheRebuilder.rebuild(registryAccess, activeRecipeMap);
+
+    List<IDisplayPartBuilderRecipe> recipes = getSyncedJEIRecipes(registryAccess, activeRecipeMap, TinkerRecipeTypes.PART_BUILDER.get(), IDisplayPartBuilderRecipe.class);
+    registration.addRecipes(TConstructJEIConstants.PART_BUILDER, recipes);
 
     // casting
-    List<IDisplayableCastingRecipe> castingBasinRecipes = RecipeHelper.getJEIRecipes(minecraft.level.registryAccess(), manager, TinkerRecipeTypes.CASTING_BASIN.get(), IDisplayableCastingRecipe.class);
+    List<IDisplayableCastingRecipe> castingBasinRecipes = getSyncedJEIRecipes(registryAccess, activeRecipeMap, TinkerRecipeTypes.CASTING_BASIN.get(), IDisplayableCastingRecipe.class);
     registration.addRecipes(TConstructJEIConstants.CASTING_BASIN, castingBasinRecipes);
-    List<IDisplayableCastingRecipe> castingTableRecipes = RecipeHelper.getJEIRecipes(minecraft.level.registryAccess(), manager, TinkerRecipeTypes.CASTING_TABLE.get(), IDisplayableCastingRecipe.class);
+    List<IDisplayableCastingRecipe> castingTableRecipes = getSyncedJEIRecipes(registryAccess, activeRecipeMap, TinkerRecipeTypes.CASTING_TABLE.get(), IDisplayableCastingRecipe.class);
     registration.addRecipes(TConstructJEIConstants.CASTING_TABLE, castingTableRecipes);
 
     // smeltery melting and alloying
-    List<MeltingRecipe> meltingRecipes = RecipeHelper.getJEIRecipes(minecraft.level.registryAccess(), manager, TinkerRecipeTypes.MELTING.get(), MeltingRecipe.class);
+    List<MeltingRecipe> meltingRecipes = getSyncedJEIRecipes(registryAccess, activeRecipeMap, TinkerRecipeTypes.MELTING.get(), MeltingRecipe.class);
     // Hide compat recipes whose item tags resolve to no registered item in this runtime.
     meltingRecipes.removeIf(recipe -> MaterialRecipeCache.getDisplayItems(recipe.getInput()).isEmpty());
     registration.addRecipes(TConstructJEIConstants.MELTING, meltingRecipes);
     registration.addRecipes(TConstructJEIConstants.FOUNDRY, meltingRecipes);
-    MeltingFuelHandler.setMeltngFuels(RecipeHelper.getRecipes(manager, TinkerRecipeTypes.FUEL.get(), MeltingFuel.class));
+    MeltingFuelHandler.setMeltngFuels(new java.util.ArrayList<>(TinkerRecipeCacheRebuilder.getRecipes(activeRecipeMap, TinkerRecipeTypes.FUEL.get(), MeltingFuel.class)));
 
     // Entity melting: one aggregated JEI display recipe for all entity types.
-    List<EntityMeltingRecipe> entityMeltingRecipes = new java.util.ArrayList<>(RecipeHelper.getJEIRecipes(minecraft.level.registryAccess(), manager, TinkerRecipeTypes.ENTITY_MELTING.get(), EntityMeltingRecipe.class));
+    List<EntityMeltingRecipe> entityMeltingRecipes = new java.util.ArrayList<>(getSyncedJEIRecipes(registryAccess, activeRecipeMap, TinkerRecipeTypes.ENTITY_MELTING.get(), EntityMeltingRecipe.class));
     entityMeltingRecipes.add(new DefaultEntityMeltingRecipe(entityMeltingRecipes));
     registration.addRecipes(TConstructJEIConstants.ENTITY_MELTING, entityMeltingRecipes);
-    List<AlloyRecipe> alloyRecipes = RecipeHelper.getJEIRecipes(minecraft.level.registryAccess(), manager, TinkerRecipeTypes.ALLOYING.get(), AlloyRecipe.class);
+    List<AlloyRecipe> alloyRecipes = getSyncedJEIRecipes(registryAccess, activeRecipeMap, TinkerRecipeTypes.ALLOYING.get(), AlloyRecipe.class);
     registration.addRecipes(TConstructJEIConstants.ALLOY, alloyRecipes);
     // molding recipes used by casting table and basin
     List<MoldingRecipe> moldingRecipes = new java.util.ArrayList<>();
-    moldingRecipes.addAll(RecipeHelper.getJEIRecipes(minecraft.level.registryAccess(), manager, TinkerRecipeTypes.MOLDING_TABLE.get(), MoldingRecipe.class));
-    moldingRecipes.addAll(RecipeHelper.getJEIRecipes(minecraft.level.registryAccess(), manager, TinkerRecipeTypes.MOLDING_BASIN.get(), MoldingRecipe.class));
+    moldingRecipes.addAll(getSyncedJEIRecipes(registryAccess, activeRecipeMap, TinkerRecipeTypes.MOLDING_TABLE.get(), MoldingRecipe.class));
+    moldingRecipes.addAll(getSyncedJEIRecipes(registryAccess, activeRecipeMap, TinkerRecipeTypes.MOLDING_BASIN.get(), MoldingRecipe.class));
     registration.addRecipes(TConstructJEIConstants.MOLDING, moldingRecipes);
 
-    List<IDisplayModifierRecipe> modifierRecipes = RecipeHelper.getJEIRecipes(minecraft.level.registryAccess(), manager, TinkerRecipeTypes.TINKER_STATION.get(), IDisplayModifierRecipe.class)
+    List<IDisplayModifierRecipe> modifierRecipes = getSyncedJEIRecipes(registryAccess, activeRecipeMap, TinkerRecipeTypes.TINKER_STATION.get(), IDisplayModifierRecipe.class)
       .stream()
       .sorted(java.util.Comparator
         .comparing(TConstructJEIPlugin::modifierSlotSortKey)
@@ -285,17 +300,42 @@ public class TConstructJEIPlugin implements IModPlugin {
       .toList();
     registration.addRecipes(TConstructJEIConstants.MODIFIERS, modifierRecipes);
 
-    List<SeveringRecipe> severingRecipes = RecipeHelper.getJEIRecipes(minecraft.level.registryAccess(), manager, TinkerRecipeTypes.SEVERING.get(), SeveringRecipe.class);
+    List<SeveringRecipe> severingRecipes = getSyncedJEIRecipes(registryAccess, activeRecipeMap, TinkerRecipeTypes.SEVERING.get(), SeveringRecipe.class);
     registration.addRecipes(TConstructJEIConstants.SEVERING, severingRecipes);
 
-    List<ToolBuildingRecipe> toolBuilding = RecipeHelper.getJEIRecipes(minecraft.level.registryAccess(), manager, TinkerRecipeTypes.TINKER_STATION.get(), ToolBuildingRecipe.class)
+    List<ToolBuildingRecipe> toolBuilding = getSyncedJEIRecipes(registryAccess, activeRecipeMap, TinkerRecipeTypes.TINKER_STATION.get(), ToolBuildingRecipe.class)
       .stream()
       .sorted(java.util.Comparator.comparingInt(recipe -> StationSlotLayoutLoader.getInstance().get(recipe.getLayoutSlotId()).getSortIndex()))
       .toList();
     registration.addRecipes(TConstructJEIConstants.TOOL_BUILDING, toolBuilding);
 
-    List<IModifierWorktableRecipe> worktableRecipes = RecipeHelper.getJEIRecipes(minecraft.level.registryAccess(), manager, TinkerRecipeTypes.MODIFIER_WORKTABLE.get(), IModifierWorktableRecipe.class);
+    List<IModifierWorktableRecipe> worktableRecipes = getSyncedJEIRecipes(registryAccess, activeRecipeMap, TinkerRecipeTypes.MODIFIER_WORKTABLE.get(), IModifierWorktableRecipe.class);
     registration.addRecipes(TConstructJEIConstants.MODIFIER_WORKTABLE, worktableRecipes);
+  }
+
+  private static <C> List<C> getSyncedJEIRecipes(RegistryAccess access, net.minecraft.world.item.crafting.RecipeManager manager, RecipeType<?> type, Class<C> clazz) {
+    return RecipeHelper.getJEIRecipes(access, getSyncedRecipeStream(manager, type), clazz);
+  }
+
+  private static <C> List<C> getSyncedJEIRecipes(RegistryAccess access, RecipeMap recipeMap, RecipeType<?> type, Class<C> clazz) {
+    return RecipeHelper.getJEIRecipes(access, getSyncedRecipeStream(recipeMap, type), clazz);
+  }
+
+  @SuppressWarnings({"rawtypes", "unchecked"})
+  private static Stream<? extends RecipeHolder<?>> getSyncedRecipeStream(net.minecraft.world.item.crafting.RecipeManager manager, RecipeType<?> type) {
+    return getSyncedRecipeStream(getActiveRecipeMap(manager), type);
+  }
+
+  @SuppressWarnings({"rawtypes", "unchecked"})
+  private static Stream<? extends RecipeHolder<?>> getSyncedRecipeStream(RecipeMap recipeMap, RecipeType<?> type) {
+    return ((RecipeMap)recipeMap).byType((RecipeType)type).stream();
+  }
+
+  private static RecipeMap getActiveRecipeMap(net.minecraft.world.item.crafting.RecipeManager manager) {
+    if (clientRecipeMap != RecipeMap.EMPTY) {
+      return clientRecipeMap;
+    }
+    return manager.recipeMap();
   }
 
   /** Sort key for modifier recipes; null slotless recipes stay last as before. */

@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 import static net.minecraft.commands.SharedSuggestionProvider.matchesSubStr;
 
-/** Suggestion helpers for Tinkers' Construct commands */
+/** Suggestion helpers for Continuum Construct commands */
 public interface TinkerSuggestionProvider {
 
   /** Normalizes TCon ID wrapper types into vanilla resource locations for suggestions. */

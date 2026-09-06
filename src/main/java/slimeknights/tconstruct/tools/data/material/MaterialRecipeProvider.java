@@ -54,7 +54,7 @@ public class MaterialRecipeProvider extends BaseRecipeProvider implements IMater
 
   @Override
   public String getName() {
-    return "Tinkers' Construct Material Recipe";
+    return "Continuum Construct Material Recipe";
   }
 
   @Override
@@ -421,7 +421,7 @@ public class MaterialRecipeProvider extends BaseRecipeProvider implements IMater
 
     @Override
     public String getName() {
-      return "Tinkers' Construct Material Recipes";
+      return "Continuum Construct Material Recipes";
     }
   }
 }

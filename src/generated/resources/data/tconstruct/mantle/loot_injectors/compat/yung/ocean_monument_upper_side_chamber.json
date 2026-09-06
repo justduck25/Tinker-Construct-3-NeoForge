@@ -11,18 +11,51 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "conditions": [
+            {
+              "chance": 0.15,
+              "condition": "minecraft:random_chance"
+            }
+          ],
           "functions": [
             {
               "function": "tconstruct:add_tool_data",
               "materials": [
                 {
-                  "type": "tconstruct:ancient"
+                  "type": "tconstruct:random",
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "min": 1,
+                    "max": 2
+                  }
                 },
                 {
-                  "type": "tconstruct:ancient"
+                  "type": "tconstruct:random",
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "min": 1,
+                    "max": 2
+                  }
                 },
                 {
-                  "type": "tconstruct:ancient"
+                  "type": "tconstruct:random",
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "min": 1,
+                    "max": 2
+                  }
                 }
               ]
             },

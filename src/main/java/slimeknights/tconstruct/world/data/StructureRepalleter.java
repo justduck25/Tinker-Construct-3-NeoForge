@@ -67,6 +67,6 @@ public class StructureRepalleter extends AbstractStructureRepalleter {
 
   @Override
   public String getName() {
-    return "Tinkers' Construct Structure Repaletter";
+    return "Continuum Construct Structure Repaletter";
   }
 }

@@ -15,7 +15,13 @@
   "tools": {
     "neoforge:ingredient_type": "neoforge:compound",
     "children": [
-      "#tconstruct:modifiable/harvest",
+      {
+        "neoforge:ingredient_type": "neoforge:compound",
+        "children": [
+          "#tconstruct:modifiable/harvest/primary",
+          "#tconstruct:modifiable/harvest/stone"
+        ]
+      },
       "#tconstruct:modifiable/armor/chestplate"
     ]
   }
