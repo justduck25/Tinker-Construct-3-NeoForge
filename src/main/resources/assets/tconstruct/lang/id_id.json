@@ -1579,7 +1579,7 @@
 
   "_comment": "Modifiers",
 
-  "key.categories.tconstruct": "Tinkers' Construct",
+  "key.categories.tconstruct": "Continuum Construct",
   "key.tconstruct.helmet_interact": "Helmet Interaction",
   "key.tconstruct.leggings_interact": "Leggings Interaction",
 
@@ -2361,11 +2361,11 @@
 
   "_comment": "GUIs",
 
-  "itemGroup.tconstruct.general": "Tinkers' General Items",
-  "itemGroup.tconstruct.tools": "Tinkers' Tools",
-  "itemGroup.tconstruct.tool_parts": "Tinkers' Toolparts",
-  "itemGroup.tconstruct.smeltery": "Tinkers' Smeltery",
-  "itemGroup.tconstruct.world": "Tinkers' World",
+  "itemGroup.tconstruct.general": "Continuum Items",
+  "itemGroup.tconstruct.tools": "Continuum Tools",
+  "itemGroup.tconstruct.tool_parts": "Continuum Parts",
+  "itemGroup.tconstruct.smeltery": "Continuum Smeltery",
+  "itemGroup.tconstruct.world": "Continuum World",
   "itemGroup.tconstruct.gadgets": "Tinkers' Gadgets",
 
   "gui.tconstruct.crafting_station": "Crafting Station",
@@ -2556,7 +2556,7 @@
 
   "_comment": "Tool Advancements",
   "advancements.tconstruct.tools.materials_and_you.title": "Tinker In Training",
-  "advancements.tconstruct.tools.materials_and_you.description": "Craft Materials and You, the introduction book into Tinkers' Construct",
+  "advancements.tconstruct.tools.materials_and_you.description": "Craft Materials and You, the introduction book into Continuum Construct",
   "advancements.tconstruct.tools.part_builder.title": "Part Builder",
   "advancements.tconstruct.tools.part_builder.description": "Create a part builder, your first step to making tools",
   "advancements.tconstruct.tools.make_part.title": "Tool Parts",
@@ -2617,8 +2617,8 @@
   "advancements.tconstruct.foundry.encyclopedia.description": "Craft the encyclopedia of materials with your knowledge from all the books",
 
   "_comment": "Gadget Advancements",
-  "advancements.tconstruct.world.tinkers_gadgetry.title": "Tinker's Gadgetry",
-  "advancements.tconstruct.world.tinkers_gadgetry.description": "Craft Tinker's Gadgetry to begin exploring the world",
+  "advancements.tconstruct.world.tinkers_gadgetry.title": "Continuum Gadgetry",
+  "advancements.tconstruct.world.tinkers_gadgetry.description": "Craft Continuum Gadgetry to begin exploring the world",
   "advancements.tconstruct.world.earth_island.title": "Earthslime Island",
   "advancements.tconstruct.world.earth_island.description": "Locate an earthslime island in the ocean",
   "advancements.tconstruct.world.sky_island.title": "Skyslime Island",

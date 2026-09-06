@@ -13,6 +13,7 @@ import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.data.tinkering.AbstractMobEquipmentProvider;
 import slimeknights.tconstruct.library.materials.RandomMaterial;
 import slimeknights.tconstruct.tools.TinkerTools;
+import slimeknights.tconstruct.tools.data.material.MaterialIds;
 
 import java.util.List;
 
@@ -25,7 +26,10 @@ public class MobEquipmentProvider extends AbstractMobEquipmentProvider {
   @SuppressWarnings("removal")
   @Override
   protected void addEquipment() {
-    RandomMaterial random = RandomMaterial.ancient();
+    RandomMaterial wood = RandomMaterial.fixed(MaterialIds.wood);
+    RandomMaterial flint = RandomMaterial.fixed(MaterialIds.flint);
+    RandomMaterial iron = RandomMaterial.fixed(MaterialIds.iron);
+    RandomMaterial rock = RandomMaterial.fixed(MaterialIds.rock);
 
     // piglins spawn with battle signs
     equip(TinkerTags.EntityTypes.PIGLINS)
@@ -33,7 +37,7 @@ public class MobEquipmentProvider extends AbstractMobEquipmentProvider {
       // only replace golden weapons, never a crossbow
       .match(ItemPredicate.set(Items.GOLDEN_SWORD, Items.GOLDEN_AXE))
       .tool(TinkerTools.battlesign)
-      .material(random, random);
+      .material(wood, iron, wood);
     // want different fluid lists for wither skeletons vs drowned
     equip(EntityType.DROWNED)
       .slot(EquipmentSlot.MAINHAND)
@@ -41,32 +45,32 @@ public class MobEquipmentProvider extends AbstractMobEquipmentProvider {
       .match(ItemPredicate.set(Items.AIR))
       .tool(TinkerTools.swasher)
       .fluid(TinkerTags.Fluids.DROWNED_SWASHER)
-      .material(random, random, random);
+      .material(flint, wood, iron);
     equip(EntityType.WITHER_SKELETON)
       .slot(EquipmentSlot.MAINHAND)
       .tool(TinkerTools.swasher)
       .fluid(TinkerTags.Fluids.WITHER_SKELETON_SWASHER)
-      .material(random, random, random);
+      .material(flint, wood, iron);
     // zombies spawn with melting pans
     equip("melting_pan", List.of(EntityType.ZOMBIE, EntityType.ZOMBIE_VILLAGER, EntityType.HUSK))
       .slot(EquipmentSlot.OFFHAND)
       .tool(TinkerTools.meltingPan)
-      .material(random, random);
+      .material(iron, wood);
     // evil villagers spawn with war picks
     equip("war_pick", List.of(EntityType.ZOMBIE_VILLAGER, EntityType.VINDICATOR))
       .slot(EquipmentSlot.MAINHAND)
       .tool(TinkerTools.warPick)
-      .material(random, random, random);
+      .material(rock, wood, iron);
     // twilight forest compat
     String tf = "twilightforest";
     equip("twilightforest_minotaur", Identifier.fromNamespaceAndPath(tf, "minotaur"), new ModLoadedCondition(tf))
       .slot(EquipmentSlot.MAINHAND)
       .tool(ItemNameOutput.fromName(TinkerTools.minotaurAxe.getId()))
-      .material(random, random, random);
+      .material(iron, wood, iron);
   }
 
   @Override
   public String getName() {
-    return "Tinkers' Construct mob equipment";
+    return "Continuum Construct mob equipment";
   }
 }

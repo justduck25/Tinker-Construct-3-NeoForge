@@ -221,6 +221,7 @@ import slimeknights.tconstruct.tools.modifiers.loot.ChrysophiliteBonusFunction;
 import slimeknights.tconstruct.tools.modifiers.loot.ChrysophiliteLootCondition;
 import slimeknights.tconstruct.tools.modifiers.loot.HasModifierLootCondition;
 import slimeknights.tconstruct.tools.modifiers.loot.ModifierBonusLootFunction;
+import slimeknights.tconstruct.tools.modifiers.loot.WitherBoneLootModifier;
 import slimeknights.tconstruct.tools.modifiers.slotless.CreativeSlotModifier;
 import slimeknights.tconstruct.tools.modifiers.slotless.OverslimeModifier;
 import slimeknights.tconstruct.tools.modifiers.slotless.StatOverrideModifier;
@@ -775,6 +776,7 @@ public final class TinkerModifiers extends TinkerModule {
    * Loot
    */
   public static final DeferredHolder<MapCodec<? extends IGlobalLootModifier>, MapCodec<ModifierLootModifier>> modifierLootModifier = GLOBAL_LOOT_MODIFIERS.register("modifier_hook", () -> ModifierLootModifier.CODEC);
+  public static final DeferredHolder<MapCodec<? extends IGlobalLootModifier>, MapCodec<WitherBoneLootModifier>> witherBoneLootModifier = GLOBAL_LOOT_MODIFIERS.register("wither_bone", () -> WitherBoneLootModifier.CODEC);
   public static final DeferredHolder<MapCodec<? extends LootItemCondition>, MapCodec<HasModifierLootCondition>> hasModifierLootCondition = LOOT_CONDITIONS.register("has_modifier", () -> HasModifierLootCondition.CODEC);
   public static final DeferredHolder<MapCodec<? extends LootItemFunction>, MapCodec<ModifierBonusLootFunction>> modifierBonusFunction = LOOT_FUNCTIONS.register("modifier_bonus", () -> ModifierBonusLootFunction.CODEC);
   public static final DeferredHolder<MapCodec<? extends LootItemCondition>, MapCodec<ChrysophiliteLootCondition>> chrysophiliteLootCondition = LOOT_CONDITIONS.register("has_chrysophilite", () -> ChrysophiliteLootCondition.CODEC);

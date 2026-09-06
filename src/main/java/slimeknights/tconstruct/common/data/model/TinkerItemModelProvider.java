@@ -468,6 +468,6 @@ public class TinkerItemModelProvider implements DataProvider {
 
   @Override
   public String getName() {
-    return "Tinkers' Construct item model provider";
+    return "Continuum Construct item model provider";
   }
 }

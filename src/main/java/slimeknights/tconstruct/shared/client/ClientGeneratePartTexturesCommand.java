@@ -114,7 +114,7 @@ public class ClientGeneratePartTexturesCommand {
       BiConsumer<Identifier, JsonObject> metaSaver = (outputPath, image) -> saveMetadata(path, outputPath, image);
 
       // create a pack.mcmeta so its a valid resource pack
-      GeneratePackHelper.saveMcmeta(path, PackType.CLIENT_RESOURCES, "Generated Resources from the Tinkers' Construct Part Texture Generator");
+      GeneratePackHelper.saveMcmeta(path, PackType.CLIENT_RESOURCES, "Generated Resources from the Continuum Construct Part Texture Generator");
 
       // predicate for whether we should generate the texture
       AbstractSpriteReader spriteReader = new ResourceManagerSpriteReader(manager, MaterialPartTextureGenerator.FOLDER);

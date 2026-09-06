@@ -19,7 +19,6 @@ import slimeknights.mantle.data.loadable.field.LoadableField;
 import slimeknights.mantle.data.loadable.primitive.IntLoadable;
 import slimeknights.mantle.data.loadable.record.RecordLoadable;
 import slimeknights.mantle.recipe.helper.LoadableRecipeSerializer;
-import slimeknights.mantle.util.LogicHelper;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.json.TinkerLoadables;
 import slimeknights.tconstruct.library.materials.definition.MaterialVariant;
@@ -139,53 +138,62 @@ public class ToolBuildingRecipe implements ITinkerStationRecipe {
     return ingredients;
   }
 
-  @Override
-  public boolean matches(ITinkerStationContainer inv, Level worldIn) {
-    if (!inv.getTinkerableStack().isEmpty()) {
-      return false;
-    }
+  @Nullable
+  private int[] findMatchingInputSlots(ITinkerStationContainer inv) {
     List<IToolPart> parts = getToolParts();
     int partSize = parts.size();
     int requiredInputs = partSize + ingredients.size();
     int maxInputs = inv.getInputCount();
     // disallow if we have no inputs, or if we have too few slots
     if (requiredInputs == 0 || requiredInputs > maxInputs) {
+      return null;
+    }
+
+    boolean[] used = new boolean[maxInputs];
+    int[] matchedSlots = new int[requiredInputs];
+    int matched = 0;
+
+    for (IToolPart part : parts) {
+      int slot = findUnusedInput(inv, used, Ingredient.of(part.asItem()));
+      if (slot < 0) {
+        return null;
+      }
+      used[slot] = true;
+      matchedSlots[matched++] = slot;
+    }
+
+    for (Ingredient ingredient : ingredients) {
+      int slot = findUnusedInput(inv, used, ingredient);
+      if (slot < 0) {
+        return null;
+      }
+      used[slot] = true;
+      matchedSlots[matched++] = slot;
+    }
+
+    for (int i = 0; i < maxInputs; i++) {
+      if (!used[i] && !inv.getInput(i).isEmpty()) {
+        return null;
+      }
+    }
+    return matchedSlots;
+  }
+
+  private static int findUnusedInput(ITinkerStationContainer inv, boolean[] used, Ingredient ingredient) {
+    for (int i = 0; i < inv.getInputCount(); i++) {
+      if (!used[i] && ingredient.test(inv.getInput(i))) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  @Override
+  public boolean matches(ITinkerStationContainer inv, Level worldIn) {
+    if (!inv.getTinkerableStack().isEmpty()) {
       return false;
     }
-
-    // if we are crafting the tool using a single non-part input, allow matching it in any slot
-    if (requiredInputs == 1 && partSize == 0) {
-      Ingredient ingredient = ingredients.get(0);
-      boolean found = false;
-      for (int i = 0; i < maxInputs; i++) {
-        ItemStack stack = inv.getInput(i);
-        if (!stack.isEmpty()) {
-          // if we already found our input, or this stack doesn't match, recipe failed
-          if (found || !ingredient.test(stack)) {
-            return false;
-          }
-          found = true;
-        }
-      }
-      return found;
-    }
-
-    // each part must match the given slot
-    int i;
-    for (i = 0; i < partSize; i++) {
-      if (parts.get(i).asItem() != inv.getInput(i).getItem()) {
-        return false;
-      }
-    }
-    // remaining slots must match extra requirements
-    for (; i < maxInputs; i++) {
-      Ingredient ingredient = LogicHelper.getOrDefault(ingredients, i - partSize, slimeknights.mantle.recipe.ingredient.EmptyIngredient.VANILLA);
-      if (!ingredient.test(inv.getInput(i))) {
-        return false;
-      }
-    }
-
-    return true;
+    return findMatchingInputSlots(inv) != null;
   }
 
   @Override
@@ -195,6 +203,10 @@ public class ToolBuildingRecipe implements ITinkerStationRecipe {
       return RecipeResult.failure(TConstruct.makeTranslationKey("recipe", "tool_build.missing_definition"));
     }
     int materialCount = ToolMaterialHook.stats(definition).size();
+    int[] matchedSlots = findMatchingInputSlots(inv);
+    if (matchedSlots == null) {
+      return RecipeResult.failure(TConstruct.makeTranslationKey("recipe", "tool_build.missing_parts"));
+    }
     // fill in materials
     List<MaterialVariant> materials = new ArrayList<>(materialCount);
     int parts = getToolParts().size();
@@ -202,7 +214,7 @@ public class ToolBuildingRecipe implements ITinkerStationRecipe {
       int max = Math.min(parts, materialCount);
       // first n slots contain parts
       for (int i = 0; i < max; i++) {
-        materials.add(MaterialVariant.of(IMaterialItem.getMaterialFromStack(inv.getInput(i))));
+        materials.add(MaterialVariant.of(IMaterialItem.getMaterialFromStack(inv.getInput(matchedSlots[i]))));
       }
       // add any material overrides after the parts, if we still have space
       max = Math.min(materialCount - parts, this.materials.size());

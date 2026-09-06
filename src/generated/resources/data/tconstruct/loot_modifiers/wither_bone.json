@@ -1,5 +1,5 @@
 {
-  "type": "mantle:replace_item",
+  "type": "tconstruct:wither_bone",
   "conditions": [
     {
       "condition": "neoforge:loot_table_id",
@@ -9,8 +9,5 @@
       "condition": "tconstruct:config",
       "prop": "wither_bone_drop"
     }
-  ],
-  "functions": [],
-  "original": "minecraft:bone",
-  "replacement": "tconstruct:necrotic_bone"
+  ]
 }

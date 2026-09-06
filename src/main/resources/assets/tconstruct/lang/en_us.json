@@ -291,7 +291,7 @@
   "item.tconstruct.encyclopedia": "Encyclopedia of Tinkering",
   "item.tconstruct.encyclopedia.tooltip": "The reference book every tinker needs\nby Selena",
 
-  "item.tconstruct.tinkers_gadgetry": "Tinker's Gadgetry",
+  "item.tconstruct.tinkers_gadgetry": "Continuum Gadgetry",
   "item.tconstruct.tinkers_gadgetry.tooltip": "Book of uses of slime in everyday tasks\nby Melvin",
 
   "item.tconstruct.puny_smelting": "Puny Smelting",
@@ -3095,7 +3095,7 @@
 
   "_comment": "Modifiers",
 
-  "key.categories.tconstruct": "Tinkers' Construct",
+  "key.categories.tconstruct": "Continuum Construct",
   "key.tconstruct.helmet_interact": "Helmet Interaction",
   "key.tconstruct.leggings_interact": "Leggings Interaction",
 
@@ -4543,13 +4543,13 @@
 
   "_comment": "GUIs",
 
-  "itemGroup.tconstruct.general": "Tinkers' General Items",
-  "itemGroup.tconstruct.tables": "Tinkers' Tables",
-  "itemGroup.tconstruct.tools": "Tinkers' Tools",
-  "itemGroup.tconstruct.tool_parts": "Tinkers' Parts",
-  "itemGroup.tconstruct.smeltery": "Tinkers' Smeltery",
-  "itemGroup.tconstruct.fluids": "Tinkers' Fluids",
-  "itemGroup.tconstruct.world": "Tinkers' World",
+  "itemGroup.tconstruct.general": "Continuum Items",
+  "itemGroup.tconstruct.tables": "Continuum Tables",
+  "itemGroup.tconstruct.tools": "Continuum Tools",
+  "itemGroup.tconstruct.tool_parts": "Continuum Parts",
+  "itemGroup.tconstruct.smeltery": "Continuum Smeltery",
+  "itemGroup.tconstruct.fluids": "Continuum Fluids",
+  "itemGroup.tconstruct.world": "Continuum World",
 
   "gui.tconstruct.crafting_station": "Crafting Station",
   "gui.tconstruct.crafting_station.uncraftable": "This item is not currently craftable by the player",
@@ -4582,6 +4582,7 @@
 
   "recipe.tconstruct.tool_repair.fully_repaired": "Tool is not damaged",
   "recipe.tconstruct.tool_build.no_count": "One of the traits prevented this tool from being crafted.",
+  "recipe.tconstruct.tool_build.missing_parts": "One or more required tool parts are missing.",
   "recipe.tconstruct.damaging.broken": "Tool is already broken",
   "recipe.tconstruct.overslime.at_capacity": "Tool has no more space for overslime",
   "recipe.tconstruct.modifier.amount": "Amount: %s",
@@ -4860,7 +4861,7 @@
 
   "_comment": "Tool Advancements",
   "advancements.tconstruct.tools.materials_and_you.title": "Tinker In Training",
-  "advancements.tconstruct.tools.materials_and_you.description": "Craft Materials and You, the introduction book into Tinkers' Construct",
+  "advancements.tconstruct.tools.materials_and_you.description": "Craft Materials and You, the introduction book for Continuum Construct",
   "advancements.tconstruct.tools.part_builder.title": "Part Builder",
   "advancements.tconstruct.tools.part_builder.description": "Create a part builder, your first step to making tools",
   "advancements.tconstruct.tools.make_part.title": "Tool Parts",
@@ -4927,8 +4928,8 @@
   "advancements.tconstruct.foundry.encyclopedia.description": "Craft the encyclopedia of materials with your knowledge from all the books",
 
   "_comment": "Gadget Advancements",
-  "advancements.tconstruct.world.tinkers_gadgetry.title": "Tinker's Gadgetry",
-  "advancements.tconstruct.world.tinkers_gadgetry.description": "Craft Tinker's Gadgetry to begin exploring the world",
+  "advancements.tconstruct.world.tinkers_gadgetry.title": "Continuum Gadgetry",
+  "advancements.tconstruct.world.tinkers_gadgetry.description": "Craft Continuum Gadgetry to begin exploring the world",
   "advancements.tconstruct.world.earth_island.title": "Earthslime Island",
   "advancements.tconstruct.world.earth_island.description": "Locate an earthslime island in the ocean",
   "advancements.tconstruct.world.sky_island.title": "Skyslime Island",

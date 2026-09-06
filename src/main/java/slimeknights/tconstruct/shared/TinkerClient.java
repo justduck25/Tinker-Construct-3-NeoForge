@@ -31,6 +31,7 @@ import net.neoforged.neoforge.client.event.RegisterItemModelsEvent;
 import net.neoforged.neoforge.client.event.RegisterConditionalItemModelPropertyEvent;
 import net.neoforged.neoforge.client.event.RegisterRangeSelectItemModelPropertyEvent;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.client.event.RecipesReceivedEvent;
 import net.neoforged.neoforge.client.event.RenderBlockScreenEffectEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -116,6 +117,18 @@ public class TinkerClient {
     // add the recipe cache invalidator to the client
     Consumer<RecipesReceivedEvent> recipesUpdated = event -> RecipeCacheInvalidator.reload(true);
     NeoForge.EVENT_BUS.addListener(recipesUpdated);
+    if (ModList.get().isLoaded("jei")) {
+      Consumer<RecipesReceivedEvent> jeiRecipesUpdated = event -> {
+        try {
+          Class.forName("slimeknights.tconstruct.plugin.jei.TConstructJEIPlugin")
+            .getMethod("onRecipesReceived", RecipesReceivedEvent.class)
+            .invoke(null, event);
+        } catch (ReflectiveOperationException e) {
+          TConstruct.LOG.warn("Failed to update JEI recipe caches after receiving server recipes", e);
+        }
+      };
+      NeoForge.EVENT_BUS.addListener(jeiRecipesUpdated);
+    }
 
     // register datagen serializers
     ISpriteTransformer.SERIALIZER.registerDeserializer(RecolorSpriteTransformer.NAME, RecolorSpriteTransformer.DESERIALIZER);

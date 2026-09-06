@@ -209,6 +209,6 @@ public class FluidTextureProvider extends AbstractFluidTextureProvider {
 
   @Override
   public String getName() {
-    return "Tinkers' Construct Fluid Texture Providers";
+    return "Continuum Construct Fluid Texture Providers";
   }
 }

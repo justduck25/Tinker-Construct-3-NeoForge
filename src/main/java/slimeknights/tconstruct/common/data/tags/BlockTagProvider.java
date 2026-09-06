@@ -556,7 +556,7 @@ public class BlockTagProvider extends TagsProvider<Block> {
 
   @Override
   public String getName() {
-    return "Tinkers Construct Block Tags";
+    return "Continuum Construct Block Tags";
   }
 
   /** Applies a tag to a set of suppliers */

@@ -1,6 +1,6 @@
 # Powah Compat Tasks
 
-Scope: Tinker's Continuum / TConstruct 26.1.2 compat with Powah 7.0.4 alpha.
+Scope: Continuum Construct / TConstruct 26.1.2 compat with Powah 7.0.4 alpha.
 
 Keep compat data gated behind filled common tags or `neoforge:mod_loaded` for `powah`. Prefer datagen/data JSON first; only add Java hooks if a feature cannot be expressed cleanly in data.
 

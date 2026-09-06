@@ -11,6 +11,12 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "conditions": [
+            {
+              "chance": 0.15,
+              "condition": "minecraft:random_chance"
+            }
+          ],
           "functions": [
             {
               "ability_slots": 2,
@@ -101,6 +107,12 @@
         },
         {
           "type": "minecraft:item",
+          "conditions": [
+            {
+              "chance": 0.15,
+              "condition": "minecraft:random_chance"
+            }
+          ],
           "functions": [
             {
               "ability_slots": 2,

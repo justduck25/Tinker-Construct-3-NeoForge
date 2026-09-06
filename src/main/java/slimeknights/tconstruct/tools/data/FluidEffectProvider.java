@@ -372,7 +372,7 @@ public class FluidEffectProvider extends AbstractFluidEffectProvider {
 
   @Override
   public String getName() {
-    return "Tinkers' Construct Spilling Fluid Provider";
+    return "Continuum Construct Spilling Fluid Provider";
   }
 
   /** Resolves a ResourceKey to an Enchantment for use in data gen */

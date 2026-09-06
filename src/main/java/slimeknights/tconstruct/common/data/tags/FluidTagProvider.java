@@ -249,7 +249,7 @@ public class FluidTagProvider extends FluidTagsProvider {
 
   @Override
   public String getName() {
-    return "Tinkers Construct Fluid TinkerTags";
+    return "Continuum Construct Fluid TinkerTags";
   }
 
   /** Adds tags for an unplacable fluid */

@@ -1,6 +1,7 @@
 package slimeknights.tconstruct.common;
 
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
@@ -88,7 +89,7 @@ public class TinkerEffect extends MobEffect {
    */
   @Deprecated
   public MobEffectInstance apply(LivingEntity entity, int duration, int amplifier, boolean showIcon) {
-    MobEffectInstance effect = new MobEffectInstance(Holder.direct((MobEffect) this), duration, amplifier, false, false, showIcon);
+    MobEffectInstance effect = new MobEffectInstance(BuiltInRegistries.MOB_EFFECT.wrapAsHolder((MobEffect) this), duration, amplifier, false, false, showIcon);
     entity.addEffect(effect);
     return effect;
   }
@@ -117,7 +118,7 @@ public class TinkerEffect extends MobEffect {
    * @return  Amplifier, or -1 if inactive
    */
   public static int getAmplifier(LivingEntity entity, MobEffect effect) {
-    MobEffectInstance instance = entity.getEffect(Holder.direct(effect));
+    MobEffectInstance instance = entity.getEffect(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect));
     if (instance != null) {
       return instance.getAmplifier();
     }

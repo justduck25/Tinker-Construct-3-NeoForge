@@ -1621,7 +1621,7 @@
 
 
 
-  "key.categories.tconstruct": "Tinkers' Construct",
+  "key.categories.tconstruct": "Continuum Construct",
   "key.tconstruct.helmet_interact": "투구 상호작용",
   "key.tconstruct.leggings_interact": "레깅스 상호작용",
 
@@ -2734,7 +2734,7 @@
 
 
   "advancements.tconstruct.tools.materials_and_you.title": "팅커 트레이닝",
-  "advancements.tconstruct.tools.materials_and_you.description": "Tinkers' Construct 모드의 안내서, '재료와 나' 책을 제작하세요",
+  "advancements.tconstruct.tools.materials_and_you.description": "Continuum Construct 모드의 안내서, '재료와 나' 책을 제작하세요",
   "advancements.tconstruct.tools.part_builder.title": "부품 작업대",
   "advancements.tconstruct.tools.part_builder.description": "도구 제작을 위한 첫걸음, 부품 작업대를 제작하세요",
   "advancements.tconstruct.tools.make_part.title": "도구 부품",

@@ -88,6 +88,14 @@ public class MaterialRecipeCache {
     }
   }
 
+  /** Rebuilds the cache from an already-loaded recipe list, used when the client receives recipes from a server. */
+  public static void rebuildRecipes(Collection<MaterialRecipe> recipes) {
+    LISTENER.clearCache();
+    for (MaterialRecipe recipe : recipes) {
+      registerRecipe(recipe);
+    }
+  }
+
   /**
    * Locates a recipe by stack
    * @param stack  Stack to check

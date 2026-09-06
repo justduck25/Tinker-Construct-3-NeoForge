@@ -45,6 +45,6 @@ public class BiomeTagProvider extends BiomeTagsProvider {
 
   @Override
   public String getName() {
-    return "Tinkers' Construct Biome Tags";
+    return "Continuum Construct Biome Tags";
   }
 }

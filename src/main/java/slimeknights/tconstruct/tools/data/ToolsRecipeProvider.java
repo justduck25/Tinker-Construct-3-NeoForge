@@ -78,7 +78,7 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
 
   @Override
   public String getName() {
-    return "Tinkers' Construct Tool Recipes";
+    return "Continuum Construct Tool Recipes";
   }
 
   @Override
@@ -532,7 +532,7 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
 
     @Override
     public String getName() {
-      return "Tinkers' Construct Tools Recipes";
+      return "Continuum Construct Tools Recipes";
     }
   }
 }

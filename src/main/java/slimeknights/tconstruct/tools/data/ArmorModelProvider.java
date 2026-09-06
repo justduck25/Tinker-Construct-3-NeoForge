@@ -59,6 +59,6 @@ public class ArmorModelProvider extends AbstractArmorModelProvider {
 
   @Override
   public String getName() {
-    return "Tinkers' Construct Armor Models";
+    return "Continuum Construct Armor Models";
   }
 }

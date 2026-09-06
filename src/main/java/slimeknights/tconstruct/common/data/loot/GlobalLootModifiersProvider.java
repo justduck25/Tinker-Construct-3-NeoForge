@@ -21,19 +21,16 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
 import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 import slimeknights.mantle.loot.AddEntryLootModifier;
-import slimeknights.mantle.loot.ReplaceItemLootModifier;
 import slimeknights.mantle.loot.condition.BlockTagLootCondition;
 import slimeknights.mantle.loot.condition.ContainsItemModifierLootCondition;
 import slimeknights.mantle.loot.condition.HasLootContextSetCondition;
 import slimeknights.mantle.loot.entry.TagPreferenceLootEntry;
-import slimeknights.mantle.recipe.helper.ItemOutput;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.common.json.BlockOrEntityCondition;
 import slimeknights.tconstruct.common.json.ConfigEnabledCondition;
 import slimeknights.tconstruct.common.json.TagFilledLootCondition;
 import slimeknights.tconstruct.shared.TinkerCommons;
-import slimeknights.tconstruct.shared.TinkerMaterials;
 import slimeknights.tconstruct.smeltery.data.SmelteryCompat;
 import slimeknights.tconstruct.smeltery.data.SmelteryCompat.CompatType;
 import slimeknights.tconstruct.tools.data.ModifierIds;
@@ -42,6 +39,7 @@ import slimeknights.tconstruct.tools.modifiers.loot.ChrysophiliteBonusFunction;
 import slimeknights.tconstruct.tools.modifiers.loot.ChrysophiliteLootCondition;
 import slimeknights.tconstruct.tools.modifiers.loot.HasModifierLootCondition;
 import slimeknights.tconstruct.tools.modifiers.loot.ModifierBonusLootFunction;
+import slimeknights.tconstruct.tools.modifiers.loot.WitherBoneLootModifier;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -54,7 +52,7 @@ public class GlobalLootModifiersProvider extends GlobalLootModifierProvider {
 
   @Override
   protected void start() {
-    add("wither_bone", ReplaceItemLootModifier.builder(Ingredient.of(Items.BONE), ItemOutput.fromItem(TinkerMaterials.necroticBone))
+    add("wither_bone", WitherBoneLootModifier.builder()
       .addCondition(LootTableIdCondition.builder(Identifier.parse("entities/wither_skeleton")).build())
       .addCondition(ConfigEnabledCondition.WITHER_BONE_DROP)
       .build());

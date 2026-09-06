@@ -6,7 +6,7 @@ Provide clear steps to reproduce the issue, especially in the case of crashes. "
 
 ## Versions
 
-Always test with the latest versions of all relevant mods; chances are the bug you are reporting has been fixed in a later version of Tinkers Construct, Mantle, or even Forge. We do not support versions Minecraft versions before the latest stable Forge release, which is currently 1.12.2. No more work is being done on older versions so issues from those versions will be closed.
+Always test with the latest versions of all relevant mods; chances are the bug you are reporting has been fixed in a later version of Continuum Construct, Mantle, or even Forge. We do not support versions Minecraft versions before the latest stable Forge release, which is currently 1.12.2. No more work is being done on older versions so issues from those versions will be closed.
 
 ## Crashes
 
@@ -20,7 +20,7 @@ OptiFine is especially problematic due to it being closed source and the fact th
 
 # Suggestions
 
-We do not take suggestions on the tracker. Ideas may be considered in the overall context, but are generally closed to keep the tracker clean. Tinkers' Constructs mechanics are designed to work as is. New tools or weapons would either be added if they fulfill a missing demand and nothing more important is to be done.
+We do not take suggestions on the tracker. Ideas may be considered in the overall context, but are generally closed to keep the tracker clean. Continuum Constructs mechanics are designed to work as is. New tools or weapons would either be added if they fulfill a missing demand and nothing more important is to be done.
 
 Please also read the [Frequently Asked Questions](https://github.com/SlimeKnights/TinkersConstruct/wiki/FAQ) on the wiki, as it covers many common suggestions.
 

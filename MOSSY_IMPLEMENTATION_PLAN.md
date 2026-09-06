@@ -2,7 +2,7 @@
 
 ## 1. Muc tieu
 
-Tich hop modifier `tconstruct:mossy`, lay cam hung tu Moss cua Tinkers' Construct 1.
+Tich hop modifier `tconstruct:mossy`, lay cam hung tu Moss cua Continuum Construct 1.
 
 - Tu dong hoi durability theo thoi gian.
 - Ho tro tool va armor co durability.

@@ -123,6 +123,6 @@ public class RenderItemProvider extends BlockStateDataMapProvider<List<RenderIte
 
   @Override
   public String getName() {
-    return "Tinkers' Construct block render item provider";
+    return "Continuum Construct block render item provider";
   }
 }

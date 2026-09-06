@@ -767,7 +767,7 @@ public class ItemTagProvider extends TagsProvider<Item> {
 
   @Override
   public String getName() {
-    return "Tinkers Construct Item Tags";
+    return "Continuum Construct Item Tags";
   }
 
 

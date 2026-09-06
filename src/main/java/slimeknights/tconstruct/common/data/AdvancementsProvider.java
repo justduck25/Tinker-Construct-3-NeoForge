@@ -116,7 +116,7 @@ public class AdvancementsProvider extends GenericDataProvider {
 
   @Override
   public String getName() {
-    return "Tinkers' Construct Advancements";
+    return "Continuum Construct Advancements";
   }
 
   @SuppressWarnings("deprecation")

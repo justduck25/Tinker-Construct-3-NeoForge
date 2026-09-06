@@ -1662,7 +1662,7 @@
 
 "_comment": "Modificadores",
 
-"key.categories.tconstruct": "Tinkers' Construct",
+"key.categories.tconstruct": "Continuum Construct",
 "key.tconstruct.helmet_interact": "Interacción de Casco",
 "key.tconstruct.leggings_interact": "Interacción de Pantalones",
 
@@ -2916,7 +2916,7 @@
 
 "_comment": "Avances de Herramientas",
 "advancements.tconstruct.tools.materials_and_you.title": "Aprendiz de Tinkers",
-"advancements.tconstruct.tools.materials_and_you.description": "Craftea 'Materials and You', el libro introductorio a Tinkers' Construct",
+"advancements.tconstruct.tools.materials_and_you.description": "Craftea 'Materials and You', el libro introductorio a Continuum Construct",
 "advancements.tconstruct.tools.part_builder.title": "Constructor de Piezas",
 "advancements.tconstruct.tools.part_builder.description": "Crea un constructor de piezas, tu primer paso para hacer herramientas",
 "advancements.tconstruct.tools.make_part.title": "Partes de Herramientas",

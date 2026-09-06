@@ -295,7 +295,7 @@ public class ModifierModelMapProvider extends AbstractModifierModelMapProvider {
 
   @Override
   public String getName() {
-    return "Tinkers' Construct Modifier Model Map Provider";
+    return "Continuum Construct Modifier Model Map Provider";
   }
 
   /** Adds dyed textures for travelers gear */

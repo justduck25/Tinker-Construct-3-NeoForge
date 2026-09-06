@@ -139,7 +139,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
 
   @Override
   public String getName() {
-    return "Tinkers' Construct Smeltery Recipes";
+    return "Continuum Construct Smeltery Recipes";
   }
 
   @Override
@@ -2927,7 +2927,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
 
     @Override
     public String getName() {
-      return "Tinkers' Construct Smeltery Recipes";
+      return "Continuum Construct Smeltery Recipes";
     }
   }
 }

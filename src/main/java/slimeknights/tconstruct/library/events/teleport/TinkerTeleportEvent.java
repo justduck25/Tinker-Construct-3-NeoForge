@@ -4,7 +4,7 @@ import net.minecraft.world.entity.Entity;
 import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.ICancellableEvent;
 
-/** Event fired when Tinkers' Construct teleports an entity. Replaces the removed NeoForge EntityTeleportEvent use. */
+/** Event fired when Continuum Construct teleports an entity. Replaces the removed NeoForge EntityTeleportEvent use. */
 public class TinkerTeleportEvent extends Event implements ICancellableEvent {
   private final Entity entity;
   private double targetX;

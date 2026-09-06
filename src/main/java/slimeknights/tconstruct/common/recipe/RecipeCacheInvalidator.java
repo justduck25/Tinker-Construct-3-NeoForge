@@ -3,10 +3,12 @@ package slimeknights.tconstruct.common.recipe;
 import it.unimi.dsi.fastutil.booleans.BooleanConsumer;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.neoforged.neoforge.event.AddServerReloadListenersEvent;
+import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import slimeknights.mantle.data.listener.IEarlySafeManagerReloadListener;
 import slimeknights.tconstruct.TConstruct;
 
 import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
 import java.util.List;
 
 /**
@@ -57,6 +59,15 @@ public class RecipeCacheInvalidator implements IEarlySafeManagerReloadListener {
    */
   public static void onReloadListenerReload(AddServerReloadListenersEvent event) {
     event.addListener(TConstruct.getResource("recipe_cache_invalidator"), INSTANCE);
+    event.addListener(TConstruct.getResource("recipe_cache_rebuilder"), (state, taskExecutor, preparationBarrier, reloadExecutor) ->
+      CompletableFuture.completedFuture(event.getServerResources().getRecipeManager())
+        .thenCompose(preparationBarrier::wait)
+        .thenAcceptAsync(manager -> TinkerRecipeCacheRebuilder.rebuild(event.getRegistryAccess(), manager), reloadExecutor));
+  }
+
+  /** Rebuilds lookups once after initial server startup, covering the first recipe load on dedicated servers. */
+  public static void onServerStarted(ServerStartedEvent event) {
+    TinkerRecipeCacheRebuilder.rebuild(event.getServer().registryAccess(), event.getServer().getRecipeManager());
   }
 
   /** Logic to respond properly to late running of the client */

@@ -23,7 +23,7 @@ public class TestWorldVersion implements WorldVersion {
 
   @Override
   public String getName() {
-    return "Tinkers' Construct Automated Test";
+    return "Continuum Construct Automated Test";
   }
 
   @Override

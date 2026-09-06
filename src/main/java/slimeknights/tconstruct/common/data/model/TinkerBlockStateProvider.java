@@ -751,6 +751,6 @@ public class TinkerBlockStateProvider implements DataProvider {
 
   @Override
   public String getName() {
-    return "Tinkers' Construct blockstate/model provider";
+    return "Continuum Construct blockstate/model provider";
   }
 }

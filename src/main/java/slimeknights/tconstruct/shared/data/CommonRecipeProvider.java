@@ -44,7 +44,7 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
 
   @Override
   public String getName() {
-    return "Tinkers' Construct Common Recipes";
+    return "Continuum Construct Common Recipes";
   }
 
   @Override
@@ -325,7 +325,7 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
 
     @Override
     public String getName() {
-      return "Tinkers' Construct Common Recipes";
+      return "Continuum Construct Common Recipes";
     }
   }
 }

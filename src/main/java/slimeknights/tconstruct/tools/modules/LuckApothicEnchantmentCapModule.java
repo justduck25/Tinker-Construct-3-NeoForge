@@ -51,11 +51,11 @@ public class LuckApothicEnchantmentCapModule implements ModifierModule, Validate
     if (tool.hasTag(TinkerTags.Items.FISHING_RODS)) {
       return luckOfTheSea;
     }
-    if (tool.hasTag(TinkerTags.Items.HARVEST)) {
-      return fortune;
-    }
     if (tool.hasTag(TinkerTags.Items.MELEE_WEAPON) || tool.hasTag(TinkerTags.Items.LAUNCHERS)) {
       return looting;
+    }
+    if (tool.hasTag(TinkerTags.Items.HARVEST)) {
+      return fortune;
     }
     return null;
   }

@@ -62,6 +62,6 @@ public class FluidContainerTransferProvider extends AbstractFluidContainerTransf
 
   @Override
   public String getName() {
-    return "Tinkers' Construct Fluid Container Transfer";
+    return "Continuum Construct Fluid Container Transfer";
   }
 }

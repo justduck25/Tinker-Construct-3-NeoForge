@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 
 /**
- * Render types for Tinkers Construct.
+ * Render types for Continuum Construct.
  * In 1.21.2, most custom render types are now created via {@link RenderTypes} factory methods.
  */
 public final class TinkerRenderTypes {

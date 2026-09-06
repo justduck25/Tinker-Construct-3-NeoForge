@@ -40,7 +40,7 @@ public class GadgetRecipeProvider extends BaseRecipeProvider {
 
   @Override
   public String getName() {
-    return "Tinkers' Construct Gadget Recipes";
+    return "Continuum Construct Gadget Recipes";
   }
 
   @Override
@@ -190,7 +190,7 @@ public class GadgetRecipeProvider extends BaseRecipeProvider {
 
     @Override
     public String getName() {
-      return "Tinkers' Construct Gadget Recipes";
+      return "Continuum Construct Gadget Recipes";
     }
   }
 }
